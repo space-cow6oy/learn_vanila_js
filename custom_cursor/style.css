@@ -1,0 +1,89 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    cursor: none; 
+
+}
+
+a {
+    text-decoration: none; /* убираем нижнее подчеркивание  */
+    text-transform: uppercase;
+    color: #000;
+}
+
+body, html {
+
+    width: 100%; 
+    height: 200vh; /* просто показываем немного для скролинга (необязательно) */ 
+    background-color: #fff;
+}
+
+
+
+nav {
+
+    /* position: relative; */
+    width: 100%;
+    height: 10%;
+    
+    
+}
+
+ul {
+    position: relative; /* чтобы иметь доступ к свойтсвам топ лефт и тд */
+    top: 50%;
+    width: 100%;
+    height: 50%;
+    background-color: #fff;
+    display: flex; /* для родителя задаем дисплей флекс, чтобы его дочерние эл-ты потом двигать */
+    list-style: none; /* убираем точки в непронумерованном списке */
+    justify-content: space-around; /* раздвигает по всему экрану, но справа и слева тоже оставляет место */
+
+}
+
+/* внутренняя часть курсора это просто круг(border raadius)*/
+.inner-cursor {
+    position: fixed;/* позиционируем элемент относительно окна браузера, а не родительского элемента, при это имеем доступ к left,top и тд, элемент пепрестает как либо влиять на другие элементы https://doka.guide/css/position/ */
+    left: 10px;
+    width: 10px;
+    height: 10px;
+    transform: translate( -50%, -50%);/* подвигаем вверх и влево внутреннюю точку, чтобы она указывала туда, куда и стандартный курсор */
+    background-color: #fff;
+    mix-blend-mode: difference;/* смешивание цветов при наведении */ 
+    border-radius: 50%;/* радиус рамки (если 50 процентов, то фигура становится круглой */
+    pointer-events: none;  /* стрелочка(по идее) нее будет меняться на ручку при наведении на ссылку https://developer.mozilla.org/en-US/docs/Web/CSS/pointer-events */
+    transition: width 0.5s, height 0.5s; /* меняет состояние (ширину и высоту) плавно */
+}
+
+.inner-cursor.grow {
+
+    width: 25px;
+    height: 25px;
+    transition: width 0.5s, height 0.5s;
+    
+}
+
+/* внешняя часть курсора это просто рамка(border-radius, border)*/
+.outer-cursor {
+    position: fixed;
+    left: 10px;
+    width: 25px;
+    height: 25px;
+    transform: translate(-50%, -50%);/* подвигаем вверх и влево внешнюю рамку, чтобы она указывала туда, куда и стандартный курсор */
+    mix-blend-mode: difference;
+    border: 1px solid #fff;
+    border-radius: 50%;
+    pointer-events: none;
+    transition: 0.08s;
+}
+
+.outer-cursor.active {
+    width: 0px;
+    height: 0px;
+    border: 0px;
+    transition: width 0.5s, height 0.5s;
+}
+
+
+
