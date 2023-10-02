@@ -8,12 +8,12 @@
   html,
   body {
     width: 100%;
-    height: 200vh;
+    height: 200vh;/* просто показываем немного для скролинга (необязательно) */
     background-color: #fff; 
     font-size: 1.3rem;
   }
   a {
-    text-decoration: none;
+    text-decoration: none; /* убираем нижнее подчеркивание  */
     text-transform: uppercase;
     color: #000; 
     padding: 8px;
@@ -25,27 +25,27 @@
   }
   
   ul {
-    list-style: none;
-    display: flex;  
-    position: relative;
+    list-style: none;/* убираем точки в непронумерованном списке */
+    display: flex;  /* для родителя задаем дисплей флекс, чтобы его дочерние эл-ты потом двигать */
+    position: relative;/* чтобы иметь доступ к свойтсвам топ лефт и тд */
     top: 50%;
-    justify-content: space-around;
+    justify-content: space-around;/* раздвигает по всему экрану, но справа и слева тоже оставляет место */
     background-color: #fff;
   }
-  
+  /* внутренняя часть курсора это просто круг(border raadius)*/
   .inner-cursor {
-    position: fixed;
+    position: fixed;/* позиционируем элемент относительно окна браузера, а не родительского элемента, при это имеем доступ к left,top и тд, элемент пепрестает как либо влиять на другие элементы https://doka.guide/css/position/ */
     width: 6px;
     height: 6px;
-    mix-blend-mode: difference;
+    mix-blend-mode: difference;/* смешивание цветов при наведении */
     background-color: #fff;
-    pointer-events: none;
-    border-radius: 50%;
-    transform: translate(-50% , -50%);
-    transition:  width 0.5s , height 0.5s;
+    pointer-events: none; /* стрелочка(по идее) нее будет меняться на ручку при наведении на ссылку https://developer.mozilla.org/en-US/docs/Web/CSS/pointer-events */
+    border-radius: 50%;/* радиус рамки (если 50 процентов, то фигура становится круглой */
+    transform: translate(-50% , -50%);/* подвигаем вверх и влево внутреннюю точку, чтобы она указывала туда, куда и стандартный курсор */
+    transition:  width 0.5s , height 0.5s;/* меняет состояние (ширину и высоту) плавно */
   }
   
-  
+  /* внешняя часть курсора это просто рамка(border-radius, border)*/
   .outer-cursor {
     position: fixed;
     width: 25px;
@@ -55,7 +55,7 @@
     pointer-events: none;
     border-radius: 50%;
     transform: translate(-50% , -50%);
-    transition: 0.08s , border 2s;
+    transition: 0.08s , border 2s;/* меняет состояние (цвет и рамка исчезает) плавно */
   
   }
   
@@ -66,7 +66,7 @@
   }
   
   .outer-cursor.active{
-    border: 0px solid #000;;
+    border: 0px solid #000; /* убираем рамку и делаем ее одинакового цвета с фоном */ 
       pointer-events: none;
   }
   
