@@ -11,40 +11,36 @@
 // так же нужно сделать с дивом аутеркурсор - добавлять свойство active, когда на него навелись и убирать, когда не навелись   
 
 
-let  innerCursor = document.querySelector('.inner-cursor')
-let  outerCursor = document.querySelector('.outer-cursor')
-
+let inner = document.querySelector('.inner-cursor')
+let outer = document.querySelector('.outer-cursor')
+     
 
 document.addEventListener('mousemove' , moveCursor)
 
+  
 function moveCursor(e){
-    let x = e.clientX;
-    let y = e.clientY;
-
-    innerCursor.style.left = `${x}px`
-    innerCursor.style.top  = `${y}px`
-    outerCursor.style.left = `${x}px`
-    outerCursor.style.top  = `${y}px`
+  let x = e.clientX;
+  let y = e.clientY;
+  
+  inner.style.left = `${x}px`;
+  inner.style.top = `${y}px`;
+  outer.style.left = `${x}px`;
+  outer.style.top = `${y}px`;
 }
 
-let links = Array.from(document.querySelectorAll("a"));
-
-
+links = Array.from(document.querySelectorAll('a'))
 
 links.forEach( (link) => {
-    link.addEventListener("mouseover" , () => {
-        innerCursor.classList.add("grow");
-    });
+ 
+  link.addEventListener('mouseover' , ()=> {
+    inner.classList.add("grow")
+    outer.classList.add("active")
+  })
+  
+  link.addEventListener('mouseleave' , ()=> {
+    inner.classList.remove("grow")
+    outer.classList.remove("active")
+  })
+  
+})
 
-    link.addEventListener("mouseleave" , () => {
-        innerCursor.classList.remove("grow");
-    });
-
-    link.addEventListener("mouseover" , () => {
-        outerCursor.classList.add("active");
-    });
-
-    link.addEventListener("mouseleave" , () => {
-        outerCursor.classList.remove("active");
-    });
-});
